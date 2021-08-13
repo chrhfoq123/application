@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".proverb">
+    tools:context=".Proverb">
 
     <!--gravity : 수평졍렬 할때 사용하는거-->
     <TextView

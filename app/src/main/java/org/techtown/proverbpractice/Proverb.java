@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class proverb extends Fragment {
+public class Proverb extends Fragment {
 
-    public proverb() {
+    public Proverb() {
 
     }
 
