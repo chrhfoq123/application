@@ -7,7 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-
+//주석
     ViewPager pager;
 
     @Override
