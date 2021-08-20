@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         pagermanager.addFragment(goodWordFragment);
 
         pager.setAdapter(pagermanager);
+        pager.setCurrentItem(1);
 
     }
 }
