@@ -20,15 +20,17 @@ public class ProverbFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.proverlayout, container, false);
 
+        Proverb proverb = new Proverb();
+
         TextView title, comment, content;
         title = view.findViewById(R.id.title);
-        title.setText("속담 setContext");
+        title.setText(proverb.getTitle());
 
         comment = view.findViewById(R.id.comment);
-        comment.setText("속담 문구 setText");
+        comment.setText(proverb.randomComment());
 
         content = view.findViewById(R.id.content);
-        content.setText("속담 내용 setText");
+        content.setText(proverb.randomContext());
 
 
         return view;
