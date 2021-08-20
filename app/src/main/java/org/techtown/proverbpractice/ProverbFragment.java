@@ -24,7 +24,7 @@ public class ProverbFragment extends Fragment {
 
         TextView title, comment, content;
         title = view.findViewById(R.id.title);
-        title.setText(proverb.getTitle());
+        title.setText(Proverb.title);
 
         comment = view.findViewById(R.id.comment);
         comment.setText(proverb.randomComment());
