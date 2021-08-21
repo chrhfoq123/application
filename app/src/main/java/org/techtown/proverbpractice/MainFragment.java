@@ -54,7 +54,8 @@ public class MainFragment extends Fragment {
                 SQLiteDatabase db = context.openOrCreateDatabase("ptk_db", Context.MODE_PRIVATE, null);
                 db.execSQL("CREATE TABLE IF NOT EXISTS 'comment_list'(category VARCHAR(50), comment VARCHAR(255), content VARCHAR(512)) ");
 
-                db.execSQL("INSERT INTO comment_list SET category = "+category+", comment = "+comment+", content = "+content+"");
+                db.execSQL("INSERT INTO comment_list (category, comment, content) VALUES ('"+ category +"','"+ comment +"','"+ content +"')  ");
+                Log.d("sql 내가 입력한값", "INSERT INTO comment_list (category, comment, content) VALUES ('"+ category +"','"+ comment +"','"+ content +"')  ");
 
                 Cursor cursor = db.rawQuery("SELECT * FROM comment_list", null);
                 while (cursor.moveToNext()) {
