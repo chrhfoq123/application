@@ -14,4 +14,6 @@ public class Proverb extends Word{
     public String randomContext(){
         return context[random];
     }
+
+
 }

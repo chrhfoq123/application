@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,24 @@ public class ProverbFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.proverlayout, container, false);
 
+        Button reset = view.findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Proverb proverb = new Proverb();
+
+                TextView title, comment, content;
+                title = view.findViewById(R.id.title);
+                title.setText(Proverb.title);
+
+                comment = view.findViewById(R.id.comment);
+                comment.setText(proverb.randomComment());
+
+                content = view.findViewById(R.id.content);
+                content.setText(proverb.randomContext());
+            }
+        });
+
         Proverb proverb = new Proverb();
 
         TextView title, comment, content;
@@ -35,5 +54,4 @@ public class ProverbFragment extends Fragment {
 
         return view;
     }
-
 }
