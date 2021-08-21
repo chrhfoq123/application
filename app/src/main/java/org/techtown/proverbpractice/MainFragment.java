@@ -1,6 +1,10 @@
 package org.techtown.proverbpractice;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,6 +49,28 @@ public class MainFragment extends Fragment {
 
                 comment = input_comment.getText().toString();
                 content = input_content.getText().toString();
+
+                Context context = getActivity().getApplicationContext();
+                SQLiteDatabase db = context.openOrCreateDatabase("ptk_db", Context.MODE_PRIVATE, null);
+                db.execSQL("CREATE TABLE IF NOT EXISTS 'comment_list'(category VARCHAR(50), comment VARCHAR(255), content VARCHAR(512)) ");
+
+                db.execSQL("INSERT INTO comment_list SET category = "+category+", comment = "+comment+", content = "+content+"");
+
+                Cursor cursor = db.rawQuery("SELECT * FROM comment_list", null);
+                while (cursor.moveToNext()) {
+                    String db_column_0 = cursor.getString(0);
+                    String db_column_1 = cursor.getString(1);
+                    String db_column_2 = cursor.getString(2);
+                    Log.d("첫번째 칼럼", db_column_0);
+                    Log.d("두번째 칼럼", db_column_1);
+                    Log.d("새번째 칼럼", db_column_2);
+                }
+
+                /*Cursor cursor = database.rawQuery(sql,null);
+                while(cursor.moveToNext()){
+                    String id = cursor.getString(0);
+                    String pass = cursor.getString(1);
+                }*/
 
                 //대충 데이터베이스 입력하는 어쩌구 저쩌구 함수 (new asdsad("구분","문구","설명"))
 
