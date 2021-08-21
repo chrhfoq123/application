@@ -50,13 +50,20 @@ public class MainFragment extends Fragment {
                 comment = input_comment.getText().toString();
                 content = input_content.getText().toString();
 
+                /* 쿼리 명령어  -> 마인크래프트 명령어라고 생각하면됨 */
+
                 Context context = getActivity().getApplicationContext();
+                /*데이터 베이스를 만드는 명령어*/
                 SQLiteDatabase db = context.openOrCreateDatabase("ptk_db", Context.MODE_PRIVATE, null);
+
+                /* 데이터 베이스 테이블을 만드는 쿼리문 (명령어) */
                 db.execSQL("CREATE TABLE IF NOT EXISTS 'comment_list'(category VARCHAR(50), comment VARCHAR(255), content VARCHAR(512)) ");
 
+                /* 데이터 베이스 (데이블) 해당 열 에 입력 하는 쿼리문 (명령어) 넣어주는거*/
                 db.execSQL("INSERT INTO comment_list (category, comment, content) VALUES ('"+ category +"','"+ comment +"','"+ content +"')  ");
                 Log.d("sql 내가 입력한값", "INSERT INTO comment_list (category, comment, content) VALUES ('"+ category +"','"+ comment +"','"+ content +"')  ");
 
+                /* 해당 모든테이블에 데이터를 조회하는 쿼리문 (명령어) */
                 Cursor cursor = db.rawQuery("SELECT * FROM comment_list", null);
                 while (cursor.moveToNext()) {
                     String db_column_0 = cursor.getString(0);
