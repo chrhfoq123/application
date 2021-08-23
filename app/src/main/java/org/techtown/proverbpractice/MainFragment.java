@@ -10,12 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainFragment extends Fragment {
 
@@ -23,6 +24,14 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mainlayout, container,false);
+
+        Bundle bundle = new Bundle();
+        bundle.putString("name", "csm");
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        ProverbArray proverbArray = new ProverbArray();
+        proverbArray.setArguments(bundle);
+        transaction.replace(R.id.frame, proverbArray);
+        transaction.commit();
 
         Button send;
 
@@ -82,9 +91,9 @@ public class MainFragment extends Fragment {
 
                 //대충 데이터베이스 입력하는 어쩌구 저쩌구 함수 (new asdsad("구분","문구","설명"))
 
-
             }
         });
+
         return view;
     }
 }

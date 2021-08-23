@@ -16,9 +16,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(3); //오류 내볼것 딱히 초과해도 뭐가 생기는지모름
+        pager.setOffscreenPageLimit(4); //오류 내볼것 딱히 초과해도 뭐가 생기는지모름
 
         PagerManager pagermanager = new PagerManager(getSupportFragmentManager());
+
+        ProverbArray proverbarray = new ProverbArray();
+        pagermanager.addFragment(proverbarray);
 
         ProverbFragment proverbfragment = new ProverbFragment();
         pagermanager.addFragment(proverbfragment);
