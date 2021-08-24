@@ -2,7 +2,7 @@ package org.techtown.proverbpractice;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
+//공부해볼 필요가있음
 public class Box implements Parcelable {
     public String category;
     public String comment;
