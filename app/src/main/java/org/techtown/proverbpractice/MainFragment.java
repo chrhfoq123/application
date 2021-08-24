@@ -18,6 +18,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MainFragment extends Fragment {
 
     @Nullable
@@ -25,13 +28,7 @@ public class MainFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mainlayout, container,false);
 
-        Bundle bundle = new Bundle();
-        bundle.putString("name", "csm");
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        ProverbArray proverbArray = new ProverbArray();
-        proverbArray.setArguments(bundle);
-        transaction.replace(R.id.frame, proverbArray);
-        transaction.commit();
+
 
         Button send;
 
@@ -74,14 +71,27 @@ public class MainFragment extends Fragment {
 
                 /* 해당 모든테이블에 데이터를 조회하는 쿼리문 (명령어) */
                 Cursor cursor = db.rawQuery("SELECT * FROM comment_list", null);
+
+                /*번들에 넘길 ArrayList 초기화*/
+                ArrayList<Box> list = new ArrayList<Box>();
+
                 while (cursor.moveToNext()) {
                     String db_column_0 = cursor.getString(0);
                     String db_column_1 = cursor.getString(1);
                     String db_column_2 = cursor.getString(2);
-                    Log.d("첫번째 칼럼", db_column_0);
-                    Log.d("두번째 칼럼", db_column_1);
-                    Log.d("새번째 칼럼", db_column_2);
+                    list.add(new Box(db_column_0, db_column_1, db_column_2));
                 }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("name", "csm");
+
+                bundle.putParcelableArrayList("list", list);
+
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                ProverbArray proverbArray = new ProverbArray();
+                proverbArray.setArguments(bundle);
+                transaction.replace(R.id.frame, proverbArray);
+                transaction.commit();
 
                 /*Cursor cursor = database.rawQuery(sql,null);
                 while(cursor.moveToNext()){
